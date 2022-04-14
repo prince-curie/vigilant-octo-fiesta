@@ -74,7 +74,23 @@ library SafeMath {
    using the ethereum block chain
 */
 contract AtlantisFileManager {
-    
+    // We set up our events 
+
+    // @dev event emitted when a file is uploaded
+    event FileUploaded(address owner, string name, uint256 _tokenId);
+
+    // @dev event emitted when an account is granted access to a file
+    event FileAccessGranted(address granter, address grantee, uint256 _tokenId);
+
+    // @dev event emitted when an account is revoked access to a file
+    event FileAccessRevoked(address revoker, address revokee, uint256 _tokenId);
+
+    // @dev event emitted when a file is made public by owner
+    event FileMadePublic(address owner, uint256 _tokenId);
+
+    // @dev event emitted when a file is made private by owner
+    event FileMadePrivate(address owner, uint256 _tokenId);
+
     // We use an enumerator to store the various access level of our fo;es
     enum AccessLevel {
         PUBLIC,
@@ -92,7 +108,7 @@ contract AtlantisFileManager {
     }
 
     // This is a mapping that keeps track of files and the addresses that have access to it
-    mapping(uint256 => mapping(address=>bool)) access;
+    mapping(uint256 => mapping(address=>bool)) public access;
 
     // Mapping of tokenIds to files objects
     mapping(uint256 => File) internal files;
@@ -104,6 +120,11 @@ contract AtlantisFileManager {
     // @dev This is the counter used to keep track of the latest id of the tokens, it also helps us keep track of all the tokens we have
     Counters.Counter public _tokenIdCounter;
     
+    // @dev this is used to check if an account has access to a file
+    function hasAccess(uint256 _tokenId, address account) public view returns(bool){
+        return access[_tokenId][account];
+    }
+
     // @dev This is the method used to upload a file to our contract, the assumption is that the file has been pushed to ipfs
     function uploadFile(string memory _name, string memory _url, string memory _description) external returns (uint256) {
         uint256 tokenId = _tokenIdCounter.current(); // generates a new tokenId
@@ -113,6 +134,8 @@ contract AtlantisFileManager {
         files[tokenId] = _file; // store the file with its token id on the files map
         
         access[tokenId][msg.sender] = true; // give the owner access to the file
+
+        emit FileUploaded(msg.sender, _name, tokenId);
         return tokenId;
     }
 
@@ -127,6 +150,8 @@ contract AtlantisFileManager {
 
         // grant the account in the parameter access to the file
         access[_file.tokenId][_account] = true;
+
+        emit FileAccessGranted(msg.sender, _account, _tokenId);
     }
 
     // @dev revoke an accounts access to a particular file
@@ -138,6 +163,7 @@ contract AtlantisFileManager {
 
         // revoke an accounts access to the file
         access[_file.tokenId][_account] = false;
+        emit FileAccessRevoked(msg.sender, _account, _tokenId);
     }
     
     // @dev this method is used to get the meta data of a file after providing the token id of the file
@@ -169,6 +195,8 @@ contract AtlantisFileManager {
 
         // set the file's access level to private
         files[_tokenId].access_level = AccessLevel.PRIVATE;
+        emit FileMadePrivate(msg.sender, _tokenId);
+
     }
     
     // @dev this function is used to make a file public and it can only be done by the owner fo the file
@@ -182,5 +210,7 @@ contract AtlantisFileManager {
 
         // set the file's access level to public
         files[_tokenId].access_level = AccessLevel.PUBLIC;
+        emit FileMadePublic(msg.sender, _tokenId);
+
     }
 }

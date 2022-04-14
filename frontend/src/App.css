@@ -1,14 +1,39 @@
 .container {
-  width: 90%;
-  max-width: 990px;
+ padding: 20px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 260px auto;
+  column-gap: 20px;
 }
 
 .upload-form {
   display: flex;
   flex-direction: column;
-  width: 200px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+
+}
+.connet-button{
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 0;
+}
+.wallet-button{
+  background-color: #226EB4;
+  color: white;
+  width: 315px;
+  height: 56px;
+}
+.preview-image{
+  width: 180px;
   height: 200px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+.image-form{
+  max-width: 100%;
+  object-fit: fit;
 }
 
 input {
@@ -19,6 +44,7 @@ input {
   display: flex;
   flex-flow: column;
   align-items: center;
+  margin-top: 20px;
 }
 .public-card-container{
   display: grid;
@@ -31,18 +57,60 @@ input {
   justify-content: space-between;
   display: flex;
   flex-flow: wrap column;
-
+  
   border-radius: 11px;
-  padding: 10px;
+  
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
+.public-card-image{
+  max-width: 100%;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 11px;
+}
 .public-image{
-  width: 100%;
+  max-width: 100%;
+  height: auto;
+  
 }
 .card-details{
-  margin-top: 10px;
+  margin: 10px;
   display: flex;
   justify-content: space-evenly;
 }
 
+button {
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+
+
+/* navbar */
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
