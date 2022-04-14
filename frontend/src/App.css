@@ -27,11 +27,11 @@ input {
 }
 .public-card{
   width: 210px;
-  height: 300px;
+  height: 270px;
   justify-content: space-between;
   display: flex;
   flex-flow: wrap column;
-  border: 2px solid gray;
+
   border-radius: 11px;
   padding: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
