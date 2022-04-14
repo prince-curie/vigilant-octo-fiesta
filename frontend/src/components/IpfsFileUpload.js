@@ -7,7 +7,7 @@ import { abi, CONTRACT_ADDRESS } from "../constants";
 export default function IpfsFileUpload() {
   const { fileName, fileUrl, fileType, getTotalCounter, handleUpload, fileLoading } =
     useContext(ipfsContext);
-  const { getProviderOrSigner } = useContext(providerSignerContext);
+  const { getProviderOrSigner, userAddress } = useContext(providerSignerContext);
   const [loading, setLoading] = useState(false);
   const [isPrivate, setIsPrivate] = useState(false);
 
@@ -35,9 +35,17 @@ export default function IpfsFileUpload() {
       console.error(err);
     }
   };
+  
   return (
     <div className="upload-form">
-      <div></div>
+      <div className="upload-address">
+        {userAddress &&
+         <div>
+           <h4>Connected</h4>
+         <p>{userAddress}</p>
+         </div>
+         }
+      </div>
       <div className="preview-image">
       {fileUrl && <img className="image-form" src={fileUrl} alt={fileName} width="400" />}
       </div>
