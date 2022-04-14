@@ -10,7 +10,7 @@ pragma solidity ^0.8.0;
  * our contract is used to keep track of who can view a file and the access level of the files
  */
  
- // counter library
+// counter library
 library Counters {
     struct Counter {
         // This variable should never be directly accessed by users of the library: interactions must be restricted to
@@ -90,11 +90,12 @@ contract AtlantisFileManager {
         string description;
         AccessLevel access_level;
     }
+
     // This is a mapping that keeps track of files and the addresses that have access to it
     mapping(uint256 => mapping(address=>bool)) access;
 
     // Mapping of tokenIds to files objects
-    mapping( uint256 => File) internal files;
+    mapping(uint256 => File) internal files;
 
     // Using counters from open zepplin
     using Counters for Counters.Counter;
@@ -141,18 +142,19 @@ contract AtlantisFileManager {
     
     // @dev this method is used to get the meta data of a file after providing the token id of the file
     function getFileData(uint256 _tokenId) external view returns(uint256 _id, string memory _name, address _owner, string memory _url, string memory _description, string memory _access_level){
+        
         // retrieve the file with the specified token id
         File memory _file = files[_tokenId];
         string memory access_level = "public";
+        
         // check if the file access is private
         if(_file.access_level == AccessLevel.PRIVATE){
-        // if the file access is private only accounts with access can view the file
-        require(access[_file.tokenId][msg.sender] == true, "you must have access to the file to get the file");
-        access_level = "private";
+            // if the file access is private only accounts with access can view the file
+            require(access[_file.tokenId][msg.sender] == true, "you must have access to the file to get the file");
+            access_level = "private";
         }
         // return the information about the file
         return (_file.tokenId, _file.name, _file.owner, _file.url, _file.description, access_level);
-
     }
 
 
