@@ -21,7 +21,7 @@ _The team had a meeting to ideate on the problem and after a successful meeting,
 _We have created two smart-contracts one upload files to IPFS and using the hash gotten from the service use it to store it on the blockchain, while the other would be to use retrieve the saved data from the blockchain._
 ## UI Design
 _This is the Landing Page_
-![Desktop - 1](https://user-images.githubusercontent.com/19577206/163433512-e085cbd4-e0bd-46a3-8954-39223afcbd9d.png)
+![Desktop - 1](https://user-images.githubusercontent.com/19577206/163436997-5b2d5aed-c14a-40fa-9677-c43ca12ccd7e.png)
 
 _This is the Library Page/Home_
 ![Desktop - 2](https://user-images.githubusercontent.com/19577206/163433522-5c186f4d-76d0-4695-8018-a680190721aa.png)
