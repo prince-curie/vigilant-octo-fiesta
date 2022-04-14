@@ -24,10 +24,10 @@ _This is the Landing Page_
 ![Desktop - 1](https://user-images.githubusercontent.com/19577206/163436997-5b2d5aed-c14a-40fa-9677-c43ca12ccd7e.png)
 
 _This is the Library Page/Home_
-![Desktop - 2](https://user-images.githubusercontent.com/19577206/163433522-5c186f4d-76d0-4695-8018-a680190721aa.png)
+![Desktop - 2](https://user-images.githubusercontent.com/19577206/163443842-26937fcb-df56-4910-8841-1627cfa365ff.png)
 
 _This is the sharing page_
-![Desktop - 3](https://user-images.githubusercontent.com/19577206/163433502-28a18b46-7567-4c9d-89c8-6f250a4995a2.png)
+![Desktop - 3](https://user-images.githubusercontent.com/19577206/163443832-1ac6f36f-0529-42d7-a122-ab2d022c033a.png)
 
 Check out our frontend design [Here](https://www.figma.com/file/DY7ZEUHLnt5tiVwwI1n08q/Atlantics?node-id=5604%3A5)
 
