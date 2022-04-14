@@ -4,6 +4,7 @@ import { providers } from "ethers";
 
 export const providerSignerContext = createContext()
 export default function ProviderOrSignerContext(props) {
+  const [userAddress, setUserAddress] = useState(null)
   // walletConnected keep track of whether the user's wallet is connected or not
   const [walletConnected, setWalletConnected] = useState(false);
   // Create a reference to the Web3 Modal (used for connecting to Metamask) which persists as long as the page is open
@@ -14,8 +15,10 @@ export default function ProviderOrSignerContext(props) {
     // Connect to Metamask
     // Since we store `web3Modal` as a reference, we need to access the `current` value to get access to the underlying object
     const provider = await web3ModalRef.current.connect();
+    
     const web3Provider = new providers.Web3Provider(provider);
-
+    const addr = await web3Provider.listAccounts()
+    setUserAddress(addr[0])
     // If user is not connected to the Rinkeby network, let them know and throw an error
     const { chainId } = await web3Provider.getNetwork();
     if (chainId !== 4) {
@@ -25,6 +28,8 @@ export default function ProviderOrSignerContext(props) {
 
     if (needSigner) {
       const signer = web3Provider.getSigner();
+      const addr = await signer.getAddress()
+      setUserAddress(addr)
       return signer;
     }
     return web3Provider;
@@ -49,7 +54,7 @@ export default function ProviderOrSignerContext(props) {
 
      
     return (
-        <providerSignerContext.Provider value={{web3ModalRef, walletConnected, connectWallet, getProviderOrSigner}}>
+        <providerSignerContext.Provider value={{web3ModalRef, walletConnected, connectWallet, userAddress, getProviderOrSigner}}>
             {props.children}
         </providerSignerContext.Provider>
     )

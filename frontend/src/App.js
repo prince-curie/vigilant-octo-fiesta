@@ -1,16 +1,16 @@
 import { Contract } from "ethers";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect} from "react";
 import Web3Modal from "web3modal";
 import "./App.css";
 import DisplayAllFiles from "./components/DisplayAllFiles";
 import IpfsFileUpload from "./components/IpfsFileUpload";
 import Navbar from "./components/Navbar";
 import { abi, CONTRACT_ADDRESS } from "./constants";
-import { ipfsContext } from "./context/IpfsUploadContext";
+
 import { providerSignerContext } from "./context/ProviderOrSignerContext";
 
 function App() {
-  const [loading, setLoading] = useState(false);
+  
   //if u need provider or signer
   //signer = getProviderOrSigner(true)
   //provider = getProviderOrSigner()
@@ -19,8 +19,7 @@ function App() {
     useContext(providerSignerContext);
 
   //to get the file url import the contest and destructure in any component u are creating
-  const { fileHash, fileName } = useContext(ipfsContext);
-
+  
   ///sample code of how to use it
   const testing = async () => {
     //
