@@ -5,7 +5,7 @@ import "./App.css";
 import DisplayAllFiles from "./components/DisplayAllFiles";
 import IpfsFileUpload from "./components/IpfsFileUpload";
 import Navbar from "./components/Navbar";
-import { abi, CONTRACT_ADDRESS } from "./constants";
+
 
 import { providerSignerContext } from "./context/ProviderOrSignerContext";
 
@@ -20,24 +20,7 @@ function App() {
 
   //to get the file url import the contest and destructure in any component u are creating
   
-  ///sample code of how to use it
-  const testing = async () => {
-    //
-
-    try {
-      const signer = await getProviderOrSigner(true);
-      const testingContract = new Contract(CONTRACT_ADDRESS, abi, signer);
-      console.log(testingContract);
-      // const tx = await testingContract.setAccessUser()
-      // setLoading(true);
-      // // wait for the transaction to get mined
-      // tx.wait()
-      // setLoading(false)
-      // console.log(tx)
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  
 
   // useEffects are used to react to changes in state of the website
   // The array at the end of function call represents what state changes will trigger this effect
@@ -58,16 +41,14 @@ function App() {
   }, [walletConnected]);
   return (
     <>
-      <Navbar />
+    <Navbar />
 
-      <div className="container">
-        <button onClick={connectWallet}>
-          {walletConnected ? "Connected" : "Connect Wallet"}
-        </button>
-        <button onClick={testing}>Testing</button>
+    <div className="container">
         <IpfsFileUpload />
+
         <DisplayAllFiles />
       </div>
+
     </>
   );
 }

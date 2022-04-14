@@ -7,7 +7,7 @@ import { ipfsContext } from "../context/IpfsUploadContext";
 import ShareFileForm from "./ShareFileForm";
 
 export default function DisplayAllFiles() {
-  const { getProviderOrSigner, userAddress } = useContext(
+  const { getProviderOrSigner, userAddress, connectWallet, walletConnected } = useContext(
     providerSignerContext
   );
   const [loading, setLoading] = useState(false);
@@ -92,7 +92,11 @@ export default function DisplayAllFiles() {
   });
   return (
     <div className="public-container">
-      <h4>Public files</h4>
+    <div className="connet-button"> 
+    <button className="wallet-button" onClick={connectWallet}>
+{walletConnected ? "Wallet Connected" : "Connect Wallet"}
+ </button>
+    </div>
       {loading && <p>fetching data</p>}
       <div className="public-card-container">{publicFile && displayFile}</div>
     </div>

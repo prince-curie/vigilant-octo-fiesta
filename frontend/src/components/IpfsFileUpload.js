@@ -37,6 +37,10 @@ export default function IpfsFileUpload() {
   };
   return (
     <div className="upload-form">
+      <div></div>
+      <div className="preview-image">
+      {fileUrl && <img className="image-form" src={fileUrl} alt={fileName} width="400" />}
+      </div>
       <label >
         {" "}
         Make File Private
@@ -50,8 +54,8 @@ export default function IpfsFileUpload() {
       </label>
       <input type="file" onChange={handleChange} />
       {fileLoading && <p>Loading...</p>}
-      <button onClick={handleSubmit}>Upload</button>
-      {fileUrl && <img src={fileUrl} alt={fileName} width="400" />}
+      {fileUrl && <button onClick={handleSubmit}>Upload</button>}
+      
     </div>
   );
 }
