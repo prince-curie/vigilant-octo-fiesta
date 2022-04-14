@@ -7,7 +7,9 @@ import { ipfsContext } from "../context/IpfsUploadContext";
 import ShareFileForm from "./ShareFileForm";
 
 export default function DisplayAllFiles() {
-  const { getProviderOrSigner } = useContext(providerSignerContext);
+  const { getProviderOrSigner, userAddress, connectWallet, walletConnected } = useContext(
+    providerSignerContext
+  );
   const [loading, setLoading] = useState(false);
   const [publicFile, setPublicFile] = useState([]);
   const { totalCounter, getTotalCounter } = useContext(ipfsContext);
@@ -56,20 +58,45 @@ export default function DisplayAllFiles() {
       console.error(err);
     }
   };
+  const togglePublic = async (id) => {
+    try {
+      const signer = await getProviderOrSigner(true);
+      const contract = new Contract(CONTRACT_ADDRESS, abi, signer);
+      const tx = await contract.makeFilePublic(id);
+      // console.log(tx);
+      tx.wait();
+      console.log(`file with id ${id} is now private`);
+      getTotalCounter();
+    } catch (err) {
+      console.error(err);
+    }
+  };
   const displayFile = publicFile.map((val) => {
     return (
       <div key={val.id} className="public-card">
+        <div className="public-card-image">
         <img className="public-image" src={val.path} alt="pubic img" />
-        <div className="card-details">
-          <button onClick={() => togglePrivate(val.id)}>private</button>
-          <ShareFileForm id={val.id} />
         </div>
+        {userAddress === val.owner && (
+          <div className="card-details">
+            {val.accessLevel === "public" ? (
+              <button onClick={() => togglePrivate(val.id)}>private</button>
+            ) : (
+              <button onClick={() => togglePublic(val.id)}>public</button>
+            )}
+            <ShareFileForm id={val.id} />
+          </div>
+        )}
       </div>
     );
   });
   return (
     <div className="public-container">
-      <h4>Public files</h4>
+    <div className="connet-button"> 
+    <button className="wallet-button" onClick={connectWallet}>
+{walletConnected ? "Wallet Connected" : "Connect Wallet"}
+ </button>
+    </div>
       {loading && <p>fetching data</p>}
       <div className="public-card-container">{publicFile && displayFile}</div>
     </div>
