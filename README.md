@@ -29,21 +29,16 @@ _This is the Library Page/Home_
 _This is the sharing page_
 ![Desktop - 3](https://user-images.githubusercontent.com/19577206/163433502-28a18b46-7567-4c9d-89c8-6f250a4995a2.png)
 
-__Check out our frontend design [Here](https://www.figma.com/file/DY7ZEUHLnt5tiVwwI1n08q/Atlantics?node-id=5501%3A2)__
+Check out our frontend design [Here](https://www.figma.com/file/DY7ZEUHLnt5tiVwwI1n08q/Atlantics?node-id=5604%3A5)
 
 ### Frontend Link
 
 _The project was finally deployed and the link to the live prototype is [Here](https://vigilant-octo-fiesta-6g8eq6lm7-prince-curie.vercel.app/)_
 
+
 ### Smart Contract Address
 
-
-<!-- 
-## Technologies
-- React
-- Solidity
-- Mocha
-- Chai -->
+https://rinkeby.etherscan.io/address/0x10713a7a59a2A5Eb7Dcd9B4a85c00AC2C0C76f35#
 
 ## How to install
 - Clone the repo using
@@ -92,5 +87,3 @@ While in the backend branch run `npm run test`
 - Mohammed Dahiru
 - Akeju Fatai
 - Onwubiko Chibuike
-
-The project was finally deployed and the link to the live prototype is [Here](https://vigilant-octo-fiesta-9flakpsuf-prince-curie.vercel.app/)
