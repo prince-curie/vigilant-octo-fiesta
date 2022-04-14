@@ -157,7 +157,7 @@ contract AtlantisFileManager {
 
 
     // @dev this function is used to make a file private and it can only be done by the owner of the file
-    function makeFilePrivate(uint256 _tokenId) external view {
+    function makeFilePrivate(uint256 _tokenId) external {
 
         // retrieve a file with the specified token id
         File memory _file = files[_tokenId];
@@ -170,7 +170,7 @@ contract AtlantisFileManager {
     }
     
     // @dev this function is used to make a file public and it can only be done by the owner fo the file
-    function makeFilePublic(uint256 _tokenId) external view {
+    function makeFilePublic(uint256 _tokenId) external {
 
         // retrieve a file with the specified token id
         File memory _file = files[_tokenId];
