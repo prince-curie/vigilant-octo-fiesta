@@ -47,7 +47,7 @@ https://rinkeby.etherscan.io/address/0x10713a7a59a2A5Eb7Dcd9B4a85c00AC2C0C76f35#
 ```
 - change directory into the project's folder.
 ```bash
-    cd literate-octo-palm-tree
+    cd vigilant-octo-fiesta
 ```
 - Change directory to the `frontend` or `smart-contracts` folder depending on which you want to install
 ```bash
@@ -66,7 +66,7 @@ https://rinkeby.etherscan.io/address/0x10713a7a59a2A5Eb7Dcd9B4a85c00AC2C0C76f35#
 ```
 - change directory into the project's folder.
 ```bash
-    cd literate-octo-palm-tree
+    cd vigilant-octo-fiesta
 ```
 - Change directory to the `frontend` or `smart-contracts` folder depending on which you want to install
 ```bash
