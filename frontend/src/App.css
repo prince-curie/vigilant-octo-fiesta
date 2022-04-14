@@ -9,10 +9,23 @@
 .upload-form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+ 
   text-align: center;
   align-items: center;
+  background-color: #D9D9D9;
+  height: 100vh;
 
+}
+.upload-address {
+  margin: 50px 0;
+  background-color: #F4F4F4;
+  max-width: 100%;
+  overflow: hidden;
+}
+.upload-address > div{
+  display: flex;
+  text-align: center;
+  flex-direction: column;
 }
 .connet-button{
   display: flex;
@@ -22,8 +35,8 @@
 .wallet-button{
   background-color: #226EB4;
   color: white;
-  width: 315px;
-  height: 56px;
+  width: 215px;
+  height: 43px;
 }
 .preview-image{
   width: 180px;
