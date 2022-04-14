@@ -18,16 +18,16 @@ _Build a  prototype that has all of the above features and using the ERC 721 sta
 
 _The team had a meeting to ideate on the problem and after a successful meeting, we came up with some solutions but had to drill down to one because of several factor such as time available for the project._
 
-_We have created two smart-contracts one upload files to IPFS and using the hash gotten from the service use it to store it on the blockchain, while the other would be to use retrieve the saved data from the blockchain._
+<!-- _We have created two smart-contracts one upload files to IPFS and using the hash gotten from the service use it to store it on the blockchain, while the other would be to use retrieve the saved data from the blockchain._ -->
 ## UI Design
 _This is the Landing Page_
 ![Desktop - 1](https://user-images.githubusercontent.com/19577206/163436997-5b2d5aed-c14a-40fa-9677-c43ca12ccd7e.png)
 
 _This is the Library Page/Home_
-![Desktop - 2](https://user-images.githubusercontent.com/19577206/163433522-5c186f4d-76d0-4695-8018-a680190721aa.png)
+![Desktop - 2](https://user-images.githubusercontent.com/19577206/163443842-26937fcb-df56-4910-8841-1627cfa365ff.png)
 
 _This is the sharing page_
-![Desktop - 3](https://user-images.githubusercontent.com/19577206/163433502-28a18b46-7567-4c9d-89c8-6f250a4995a2.png)
+![Desktop - 3](https://user-images.githubusercontent.com/19577206/163443832-1ac6f36f-0529-42d7-a122-ab2d022c033a.png)
 
 Check out our frontend design [Here](https://www.figma.com/file/DY7ZEUHLnt5tiVwwI1n08q/Atlantics?node-id=5604%3A5)
 
@@ -47,7 +47,7 @@ https://rinkeby.etherscan.io/address/0x10713a7a59a2A5Eb7Dcd9B4a85c00AC2C0C76f35#
 ```
 - change directory into the project's folder.
 ```bash
-    cd literate-octo-palm-tree
+    cd vigilant-octo-fiesta
 ```
 - Change directory to the `frontend` or `smart-contracts` folder depending on which you want to install
 ```bash
@@ -66,7 +66,7 @@ https://rinkeby.etherscan.io/address/0x10713a7a59a2A5Eb7Dcd9B4a85c00AC2C0C76f35#
 ```
 - change directory into the project's folder.
 ```bash
-    cd literate-octo-palm-tree
+    cd vigilant-octo-fiesta
 ```
 - Change directory to the `frontend` or `smart-contracts` folder depending on which you want to install
 ```bash
