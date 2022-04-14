@@ -23,7 +23,7 @@ export default function IpfsFileUpload() {
     try {
       const signer = await getProviderOrSigner(true);
       const contract = new Contract(CONTRACT_ADDRESS, abi, signer);
-
+    
       const tx = await contract.addFile(fileHash, fileName, isPrivate);
       setLoading(true);
       // wait for the transaction to get mined

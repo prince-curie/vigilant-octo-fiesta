@@ -40,7 +40,7 @@ const testing = async () => {
       // tx.wait()
       // setLoading(false)
       // console.log(tx)
-      console.log(CONTRACT_ADDRESS, abi)
+    
     
   } catch(err) {
       console.error(err)

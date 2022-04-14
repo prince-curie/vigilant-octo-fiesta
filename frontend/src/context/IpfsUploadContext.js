@@ -18,6 +18,7 @@ export default function IpfsUploadContext(props) {
       setFileHash(added.path)
       setFileName(file.name)
       setFileLoading(false)
+      
     } catch (error) {
       console.log('Error uploading file: ', error)
     } 

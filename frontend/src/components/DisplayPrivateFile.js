@@ -4,14 +4,14 @@ import { abi, CONTRACT_ADDRESS } from "../constants";
 import { useContext, useState } from "react";
 
 
-export default function DisplayAllFiles () {
+export default function DisplayPrivateFile () {
 
 const { getProviderOrSigner } = useContext(providerSignerContext);
 const [loading, setLoading] = useState(false);
-const [publicFile, setPublicFile] = useState([])
+const [privateFile, setPrivateFile] = useState([])
 
 
-  const getPublicFile = async () => {
+  const getPrivateFileFile = async () => {
     //
     
     
@@ -22,7 +22,7 @@ const [publicFile, setPublicFile] = useState([])
             abi,
             signer
         )
-        const tx = await contract.getPublicFiles(1, 100)
+        const tx = await contract.getPrivateFiles(1, 100)
         setLoading(true);
         // wait for the transaction to get mined
         tx.wait()
