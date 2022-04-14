@@ -5,7 +5,7 @@ import { providerSignerContext } from "../context/ProviderOrSignerContext";
 import { abi, CONTRACT_ADDRESS } from "../constants";
 
 export default function IpfsFileUpload() {
-  const { fileName, fileUrl, fileType, handleUpload, fileLoading } =
+  const { fileName, fileUrl, fileType, getTotalCounter, handleUpload, fileLoading } =
     useContext(ipfsContext);
   const { getProviderOrSigner } = useContext(providerSignerContext);
   const [loading, setLoading] = useState(false);
@@ -30,6 +30,7 @@ export default function IpfsFileUpload() {
       tx.wait();
       setLoading(false);
       console.log(tx);
+      getTotalCounter()
     } catch (err) {
       console.error(err);
     }
