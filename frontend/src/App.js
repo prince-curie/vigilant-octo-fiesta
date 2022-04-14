@@ -3,7 +3,9 @@ import { Contract } from 'ethers';
 import { useContext, useEffect, useState } from 'react';
 import Web3Modal from "web3modal";
 import './App.css';
+import DisplayAllFiles from './components/DisplayAllFiles';
 import IpfsFileUpload from './components/IpfsFileUpload';
+import Navbar from './components/Navbar';
 import { abi, CONTRACT_ADDRESS } from './constants';
 import { ipfsContext } from './context/IpfsUploadContext';
 import { providerSignerContext } from './context/ProviderOrSignerContext';
@@ -38,6 +40,7 @@ const testing = async () => {
       // tx.wait()
       // setLoading(false)
       // console.log(tx)
+      console.log(CONTRACT_ADDRESS, abi)
     
   } catch(err) {
       console.error(err)
@@ -66,15 +69,17 @@ useEffect(() => {
       
     }
   }, [walletConnected]);
-  console.log(abi, CONTRACT_ADDRESS)
   return (
-    <div className="App">
+    <div className="container">
+      <Navbar />
       <IpfsFileUpload />
       
       <button onClick={connectWallet}>{
       walletConnected ? "Connected" : "Connect Wallet"
       }</button>
       <button onClick={testing}>Testing</button>
+      <DisplayAllFiles />
+
     </div>
   );
 }

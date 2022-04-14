@@ -1,32 +1,41 @@
-import { ethers } from 'ethers';
+
 import {useState} from 'react'
-import contractABI from './contractABI.json'
-import { BigNumber } from 'ethers';
+
+import { BigNumber, Contract } from 'ethers';
+import {abi, CONTRACT_ADDRESS} from "../constants/index"
+import { providerSignerContext } from '../context/ProviderOrSignerContext';
 
 
 
 export default function ShareFileForm() {
+    const {getProviderOrSigner} = useContext(providerSignerContext)
 
     const {fileId, setFileId} = useState(null);
-    const {walletAddress, setWalletAddress} = useState("");
-    const CONTRACT_ADDRESS = "address"
+    const [walletAddress, setWalletAddress] = useState("");
+    const [loading, setLoading] = useState(false)
+
 
     const handleSubmit = async () => {
         try {
             const {ethereum} = window;
             if(ethereum) {
-                const {provider} = new ethers.providers.Web3Provider(ethereum);
-                const signer = provider.getSigner();
-                const contract = new ethers.Contract(CONTRACT_ADDRESS, contractABI.abi, signer);
 
+                const signer = await getProviderOrSigner(true)
+                const contract = new Contract(
+                    CONTRACT_ADDRESS,
+                    abi,
+                    signer
+                )
                 const tx = await contract.shareFile(BigNumber.from(fileId), walletAddress);
-
-                const receipt = await tx.wait();
-
-                console.log("receipt", receipt);
-
+                
+                setLoading(true);
+                // // wait for the transaction to get mined
+                tx.wait()
+                setLoading(false)
+                console.log(tx)
                 setFileId(null);
-                setWalletAddress("");
+                setWalletAddress("")
+                
             } else {
                 console.log("No ethereum");
             }
