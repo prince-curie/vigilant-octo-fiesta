@@ -5,7 +5,7 @@ import { providerSignerContext } from "../context/ProviderOrSignerContext";
 import { abi, CONTRACT_ADDRESS } from "../constants";
 
 export default function IpfsFileUpload() {
-  const { fileName, fileHash, handleUpload, fileLoading } =
+  const { fileName, fileUrl, fileType, handleUpload, fileLoading } =
     useContext(ipfsContext);
   const { getProviderOrSigner } = useContext(providerSignerContext);
   const [loading, setLoading] = useState(false);
@@ -16,7 +16,7 @@ export default function IpfsFileUpload() {
   }
 
   const handleSubmit = async () => {
-    if (!fileHash) {
+    if (!fileUrl) {
       return;
     }
 
@@ -24,7 +24,7 @@ export default function IpfsFileUpload() {
       const signer = await getProviderOrSigner(true);
       const contract = new Contract(CONTRACT_ADDRESS, abi, signer);
     
-      const tx = await contract.addFile(fileHash, fileName, isPrivate);
+      const tx = await contract.uploadFile(fileName, fileUrl, fileType);
       setLoading(true);
       // wait for the transaction to get mined
       tx.wait();
@@ -34,8 +34,6 @@ export default function IpfsFileUpload() {
       console.error(err);
     }
   };
-
-  console.log(fileHash);
   return (
     <div className="upload-form">
       <label >
@@ -52,7 +50,7 @@ export default function IpfsFileUpload() {
       <input type="file" onChange={handleChange} />
       {fileLoading && <p>Loading...</p>}
       <button onClick={handleSubmit}>Upload</button>
-      {fileHash && <img src={`https://ipfs.infura.io/ipfs/${fileHash}`} alt={fileName} width="400" />}
+      {fileUrl && <img src={fileUrl} alt={fileName} width="400" />}
     </div>
   );
 }
