@@ -74,8 +74,9 @@ export default function DisplayAllFiles() {
   const displayFile = publicFile.map((val) => {
     return (
       <div key={val.id} className="public-card">
+        <div className="public-card-image">
         <img className="public-image" src={val.path} alt="pubic img" />
-
+        </div>
         {userAddress === val.owner && (
           <div className="card-details">
             {val.accessLevel === "public" ? (
