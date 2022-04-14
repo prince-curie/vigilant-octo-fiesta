@@ -2,15 +2,13 @@
 pragma solidity ^0.8.0;
 
 /**
- * @title Atlantis file manager
+ * @title Counters
  * @author Atlantis team
- * @notice Keep track of the record of files you can view and share on the contract, the meta data for the 
- * file is stored on the contract but the file itseleis stored on IPFS
- * @dev Contract enables users to store, retrieve and share files on a decentralized file sharing system,
- * our contract is used to keep track of who can view a file and the access level of the files
+ * @dev Provides counters that can only be incremented, decremented or reset. This can be used e.g. to track the number
+ * of elements in a mapping, issuing ERC721 ids, or counting request ids.
+ *
+ * Include with `using Counters for Counters.Counter;`
  */
- 
- // counter library
 library Counters {
     struct Counter {
         // This variable should never be directly accessed by users of the library: interactions must be restricted to
@@ -42,7 +40,6 @@ library Counters {
     }
 }
 
-// safe math library for handling simpl arithmentic operations
 library SafeMath {
   function mul(uint256 a, uint256 b) internal pure returns (uint256 c) {
     if (a == 0) {
@@ -100,10 +97,10 @@ contract AtlantisFileManager {
     using Counters for Counters.Counter;
     using SafeMath for uint256;
     
-    // @dev This is the counter used to keep track of the latest id of the tokens, it also helps us keep track of all the tokens we have
+    // This is the counter used to keep track of the latest id of a token
     Counters.Counter public _tokenIdCounter;
     
-    // @dev This is the method used to upload a file to our contract, the assumption is that the file has been pushed to ipfs
+    // This is the method used to upload a file to our contract, the assumption is that the file has been pushed to ipfs
     function uploadFile(string memory _name, string memory _url, string memory _description) external returns (uint256) {
         uint256 tokenId = _tokenIdCounter.current(); // generates a new tokenId
         _tokenIdCounter.increment();
@@ -115,7 +112,7 @@ contract AtlantisFileManager {
         return tokenId;
     }
 
-    // @dev grant an address access to a file
+    // grant an address access to a file
     function grantAccess(uint256 _tokenId, address _account) external {
 
         // retrieve the file with the specified token id
@@ -128,7 +125,7 @@ contract AtlantisFileManager {
         access[_file.tokenId][_account] = true;
     }
 
-    // @dev revoke an accounts access to a particular file
+    // revoke an accounts access to a particular file
     function revokeAccess(uint256 _tokenId, address _account) external {
 
         // retrieve the file with the specified token id
@@ -138,8 +135,7 @@ contract AtlantisFileManager {
         // revoke an accounts access to the file
         access[_file.tokenId][_account] = false;
     }
-    
-    // @dev this method is used to get the meta data of a file after providing the token id of the file
+
     function getFileData(uint256 _tokenId) external view returns(uint256 _id, string memory _name, address _owner, string memory _url, string memory _description, string memory _access_level){
         // retrieve the file with the specified token id
         File memory _file = files[_tokenId];
@@ -156,8 +152,8 @@ contract AtlantisFileManager {
     }
 
 
-    // @dev this function is used to make a file private and it can only be done by the owner of the file
-    function makeFilePrivate(uint256 _tokenId) external view {
+    // make a file private
+    function makeFilePrivate(uint256 _tokenId) external {
 
         // retrieve a file with the specified token id
         File memory _file = files[_tokenId];
@@ -166,11 +162,11 @@ contract AtlantisFileManager {
         require(_file.owner == msg.sender, "you must be the owner to make a file private");
 
         // set the file's access level to private
-        _file.access_level = AccessLevel.PRIVATE;
+        files[_tokenId].access_level = AccessLevel.PRIVATE;
     }
     
-    // @dev this function is used to make a file public and it can only be done by the owner fo the file
-    function makeFilePublic(uint256 _tokenId) external view {
+    // make a file public 
+    function makeFilePublic(uint256 _tokenId) external {
 
         // retrieve a file with the specified token id
         File memory _file = files[_tokenId];
@@ -179,6 +175,6 @@ contract AtlantisFileManager {
         require(_file.owner == msg.sender, "you must be the owner to make a file public");
 
         // set the file's access level to public
-        _file.access_level = AccessLevel.PUBLIC;
+        files[_tokenId].access_level = AccessLevel.PUBLIC;
     }
 }
