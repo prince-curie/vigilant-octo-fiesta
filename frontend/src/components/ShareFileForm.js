@@ -19,7 +19,7 @@ export default function ShareFileForm() {
                 const signer = provider.getSigner();
                 const contract = new ethers.Contract(CONTRACT_ADDRESS, contractABI.abi, signer);
 
-                const tx = await contract.shareFile(BigNumber.from(fileId), walletAddress);
+                const tx = await contract.grantAccess(BigNumber.from(fileId), walletAddress);
 
                 const receipt = await tx.wait();
 

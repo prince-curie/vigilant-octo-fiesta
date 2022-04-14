@@ -4,7 +4,7 @@ async function main() {
      ************************* DEPLOY <CONTRACT> ***************************
      ***********************************************************************/
 
-    const MainContract = await ethers.getContractFactory("<CONTRACT-NAME>");
+    const MainContract = await ethers.getContractFactory("AtlantisFileManager");
     const mainContract = await MainContract.deploy();
 
     console.log(`Contract address => ${mainContract.address}`);
