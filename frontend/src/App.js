@@ -18,7 +18,7 @@ function App() {
 const { walletConnected, web3ModalRef, connectWallet, getProviderOrSigner} = useContext(providerSignerContext)
 
 //to get the file url import the contest and destructure in any component u are creating
-const {fileUrl, fileName, fileType } = useContext(ipfsContext)
+const {fileHash, fileName } = useContext(ipfsContext)
 
 
 ///sample code of how to use it
@@ -72,12 +72,13 @@ useEffect(() => {
   return (
     <div className="container">
       <Navbar />
-      <IpfsFileUpload />
+      
       
       <button onClick={connectWallet}>{
       walletConnected ? "Connected" : "Connect Wallet"
       }</button>
       <button onClick={testing}>Testing</button>
+      <IpfsFileUpload />
       <DisplayAllFiles />
 
     </div>

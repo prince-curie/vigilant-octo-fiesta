@@ -4,9 +4,8 @@ import { create } from 'ipfs-http-client'
 const client = create('https://ipfs.infura.io:5001/api/v0')
 export const ipfsContext = createContext()
 export default function IpfsUploadContext(props) {
-    const [fileUrl, setFileUrl] = useState(``)
+    const [fileHash, setFileHash] = useState(``)
     const [fileName, setFileName] = useState(``)
-    const [fileType, setFileType] = useState(``)
     const [fileLoading, setFileLoading] = useState(false)
     const handleUpload = async(file) => {
     
@@ -14,10 +13,10 @@ export default function IpfsUploadContext(props) {
       setFileLoading(true)
       const added = await client.add(file)
       
-      const pathOnIpfs = `https://ipfs.infura.io/ipfs/${added.path}`
-      setFileUrl(pathOnIpfs)
+      // const pathOnIpfs = `https://ipfs.infura.io/ipfs/${added.path}`
+
+      setFileHash(added.path)
       setFileName(file.name)
-      setFileType(file.type)
       setFileLoading(false)
     } catch (error) {
       console.log('Error uploading file: ', error)
@@ -25,7 +24,7 @@ export default function IpfsUploadContext(props) {
    }
 
    return (
-       <ipfsContext.Provider value={{ fileUrl, fileName, fileType, handleUpload, fileLoading }}>
+       <ipfsContext.Provider value={{ fileHash, fileName, handleUpload, fileLoading }}>
            {props.children}
        </ipfsContext.Provider>
    )
